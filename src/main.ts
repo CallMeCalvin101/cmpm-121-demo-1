@@ -14,3 +14,13 @@ app.append(header);
 const clicker = document.getElementById("clicker");
 clicker!.innerHTML = clickerText;
 app.append(clicker!);
+
+let counter = 0;
+const countText = document.getElementById("count");
+countText!.innerHTML = `😎 ${counter} 😎`;
+app.append(countText!);
+
+clicker?.addEventListener("click", function c() {
+  counter += 1;
+  countText!.innerHTML = `😎 ${counter} 😎`;
+});
