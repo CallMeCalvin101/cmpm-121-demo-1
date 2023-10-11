@@ -4,8 +4,11 @@ const app: HTMLDivElement = document.querySelector("#app")!;
 
 const gameName: string = "This is a test game test game";
 const clickerText: string = "Click ME 😎";
+const upgradeText: string = "10 😎 --> 0.1 Auto 😎";
+
 let counter: number = 0;
 let timestamp: number = 0;
+let numUpgraded = 0;
 
 function increaseCount(n: number) {
   counter += n;
@@ -14,7 +17,7 @@ function increaseCount(n: number) {
 
 function automaticIncrease() {
   const timePassed = performance.now() - timestamp;
-  increaseCount(timePassed / 1000);
+  increaseCount(numUpgraded * (timePassed / 1000));
   timestamp = performance.now();
   window.requestAnimationFrame(automaticIncrease);
 }
@@ -33,8 +36,22 @@ const countText = document.getElementById("count");
 countText!.innerHTML = `😎 ${counter} 😎`;
 app.append(countText!);
 
+const upgrader = document.getElementById("upgrade");
+upgrader!.innerHTML = upgradeText;
+app.append(upgrader!);
+
 clicker?.addEventListener("click", () => {
   increaseCount(1);
+  if (counter >= 10) {
+    (upgrader! as HTMLSelectElement).disabled = false;
+  }
 });
 
-window.requestAnimationFrame(automaticIncrease);
+upgrader?.addEventListener("click", () => {
+  if (counter >= 10) {
+    counter -= 10;
+    numUpgraded += 1;
+    timestamp = performance.now();
+    window.requestAnimationFrame(automaticIncrease);
+  }
+});
