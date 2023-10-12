@@ -2,11 +2,11 @@ import "./style.css";
 
 const app: HTMLDivElement = document.querySelector("#app")!;
 
-const gameName: string = "This is a test game test game";
-const clickerText: string = "Click ME 😎";
-const upgradeAText: string = "10 😎 --> 0.1 Auto 😎";
-const upgradeBText: string = "100 😎 --> 2 Auto 😎";
-const upgradeCText: string = "1000 😎 --> 50 Auto 😎";
+const gameName: string = "😎 Game";
+const clickerText: string = "😎";
+const upgradeAText: string = "😎 Toothpicker [10😎 --> 0.1 😎/sec]";
+const upgradeBText: string = "😎 Pickaxe [100😎 --> 2 😎/sec]";
+const upgradeCText: string = "😎 Driller [1000😎 --> 50 😎/sec]";
 
 let counter: number = 0;
 let timestamp: number = 0;
@@ -44,9 +44,10 @@ function calculateGrowthRate(): number {
 
 document.title = gameName;
 
+/*
 const header = document.createElement("h1");
 header.innerHTML = gameName;
-app.append(header);
+app.append(header);*/
 
 const clicker = document.getElementById("clicker");
 clicker!.innerHTML = clickerText;
@@ -86,7 +87,9 @@ upgraderA?.addEventListener("click", () => {
     counter -= 10;
     numA += 1;
     costA *= 1.15;
-    upgraderA!.innerHTML = `${costA.toFixed(2)}😎 --> 0.1 Auto 😎`;
+    upgraderA!.innerHTML = `😎 Toothpicker [${costA.toFixed(
+      2,
+    )}😎 --> 0.1 😎/sec]`;
 
     timestamp = performance.now();
     window.requestAnimationFrame(automaticIncrease);
@@ -98,7 +101,7 @@ upgraderB?.addEventListener("click", () => {
     counter -= 100;
     numB += 1;
     costB *= 1.15;
-    upgraderB!.innerHTML = `${costB.toFixed(2)}😎 --> 2 Auto 😎`;
+    upgraderB!.innerHTML = `😎 Pickaxe [${costB.toFixed(2)}😎 --> 2 😎/sec]`;
   }
 });
 
@@ -107,6 +110,6 @@ upgraderC?.addEventListener("click", () => {
     counter -= 1000;
     numC += 1;
     costC *= 1.15;
-    upgraderC!.innerHTML = `${costC.toFixed(2)}😎 --> 50 Auto 😎`;
+    upgraderC!.innerHTML = `😎 Driller [${costC.toFixed(2)}😎 --> 50 😎/sec]`;
   }
 });
