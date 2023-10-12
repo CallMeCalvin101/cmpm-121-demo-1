@@ -13,6 +13,9 @@ let timestamp: number = 0;
 let numA: number = 0;
 let numB: number = 0;
 let numC: number = 0;
+let costA: number = 10;
+let costB: number = 100;
+let costC: number = 1000;
 
 function increaseCount(n: number) {
   counter += n;
@@ -79,24 +82,31 @@ clicker?.addEventListener("click", () => {
 });
 
 upgraderA?.addEventListener("click", () => {
-  if (counter >= 10) {
+  if (counter >= costA) {
     counter -= 10;
     numA += 1;
+    costA *= 1.15;
+    upgraderA!.innerHTML = `${costA.toFixed(2)}😎 --> 0.1 Auto 😎`;
+
     timestamp = performance.now();
     window.requestAnimationFrame(automaticIncrease);
   }
 });
 
 upgraderB?.addEventListener("click", () => {
-  if (counter >= 100) {
+  if (counter >= costB) {
     counter -= 100;
     numB += 1;
+    costB *= 1.15;
+    upgraderB!.innerHTML = `${costB.toFixed(2)}😎 --> 2 Auto 😎`;
   }
 });
 
 upgraderC?.addEventListener("click", () => {
-  if (counter >= 1000) {
+  if (counter >= costC) {
     counter -= 1000;
     numC += 1;
+    costC *= 1.15;
+    upgraderC!.innerHTML = `${costC.toFixed(2)}😎 --> 50 Auto 😎`;
   }
 });
