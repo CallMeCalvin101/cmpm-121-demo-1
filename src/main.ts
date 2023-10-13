@@ -16,12 +16,45 @@ interface Item {
   cost: number;
   rate: number;
   count: number;
+  description: string;
 }
 
 const availableItems: Item[] = [
-  { name: "Person", cost: 10, rate: 0.1, count: 0 },
-  { name: "Worker", cost: 100, rate: 2, count: 0 },
-  { name: "Grinder", cost: 1000, rate: 50, count: 0 },
+  {
+    name: "Person",
+    cost: 10,
+    rate: 0.1,
+    count: 0,
+    description: "An ordinary person with 🕶️",
+  },
+  {
+    name: "Worker",
+    cost: 100,
+    rate: 2,
+    count: 0,
+    description: "Born to 😎. Forced to work",
+  },
+  {
+    name: "Expert",
+    cost: 500,
+    rate: 20,
+    count: 0,
+    description: "Graduated from 😎 University",
+  },
+  {
+    name: "Grinder",
+    cost: 1000,
+    rate: 50,
+    count: 0,
+    description: "Someone who truly deserves to 😎",
+  },
+  {
+    name: "CEO",
+    cost: 10000,
+    rate: 1000,
+    count: 0,
+    description: "😎 Sotcks will go to the moon!",
+  },
 ];
 
 function increaseCount(n: number) {
@@ -75,6 +108,12 @@ function updateUpgradeText(type: number) {
     case 2:
       upgraderC!.innerHTML = templateText;
       break;
+    case 3:
+      upgraderD!.innerHTML = templateText;
+      break;
+    case 4:
+      upgraderE!.innerHTML = templateText;
+      break;
   }
 }
 
@@ -90,6 +129,12 @@ function checkUpgradeState(type: number) {
     case 2:
       (upgraderC! as HTMLSelectElement).disabled = isNotActive;
       break;
+    case 3:
+      (upgraderD! as HTMLSelectElement).disabled = isNotActive;
+      break;
+    case 4:
+      (upgraderE! as HTMLSelectElement).disabled = isNotActive;
+      break;
   }
 }
 
@@ -103,6 +148,10 @@ function startAutoClicker() {
   timestamp = performance.now();
   window.requestAnimationFrame(automaticIncrease);
   isAutoStarted = true;
+}
+
+function updateDescription(type: number) {
+  descriptionText!.innerHTML = availableItems[type].description;
 }
 
 document.title = gameName;
@@ -125,6 +174,14 @@ const upgraderC: HTMLElement | null = document.getElementById("upgradeC");
 updateUpgradeText(2);
 app.append(upgraderC!);
 
+const upgraderD: HTMLElement | null = document.getElementById("upgradeD");
+updateUpgradeText(3);
+app.append(upgraderD!);
+
+const upgraderE: HTMLElement | null = document.getElementById("upgradeE");
+updateUpgradeText(4);
+app.append(upgraderE!);
+
 const countText: HTMLElement | null = document.getElementById("count");
 countText!.innerHTML = `😎 0.00 😎`;
 app.append(countText!);
@@ -132,6 +189,10 @@ app.append(countText!);
 const rateText: HTMLElement | null = document.getElementById("growthRate");
 rateText!.innerHTML = `0.00 😎/sec`;
 app.append(rateText!);
+
+const descriptionText: HTMLElement | null =
+  document.getElementById("description");
+app.append(descriptionText!);
 
 clicker?.addEventListener("click", () => {
   increaseCount(clickAmount);
@@ -142,10 +203,38 @@ upgraderA?.addEventListener("click", () => {
   clickUpgrade(0);
 });
 
+upgraderA?.addEventListener("mouseover", () => {
+  updateDescription(0);
+});
+
 upgraderB?.addEventListener("click", () => {
   clickUpgrade(1);
 });
 
+upgraderB?.addEventListener("mouseover", () => {
+  updateDescription(1);
+});
+
 upgraderC?.addEventListener("click", () => {
   clickUpgrade(2);
+});
+
+upgraderC?.addEventListener("mouseover", () => {
+  updateDescription(2);
+});
+
+upgraderD?.addEventListener("click", () => {
+  clickUpgrade(3);
+});
+
+upgraderD?.addEventListener("mouseover", () => {
+  updateDescription(3);
+});
+
+upgraderE?.addEventListener("click", () => {
+  clickUpgrade(4);
+});
+
+upgraderE?.addEventListener("mouseover", () => {
+  updateDescription(4);
 });
