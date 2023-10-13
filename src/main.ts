@@ -4,7 +4,7 @@ const app: HTMLDivElement = document.querySelector("#app")!;
 
 const gameName: string = "😎 Game";
 const clickerText: string = "😎";
-const clickAmount: number = 1000;
+const clickAmount: number = 1;
 const second: number = 1000;
 
 let isAutoStarted: boolean = false;
