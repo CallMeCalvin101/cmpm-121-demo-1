@@ -19,9 +19,9 @@ interface Item {
 }
 
 const availableItems: Item[] = [
-  { name: "A", cost: 10, rate: 0.1, count: 0 },
-  { name: "B", cost: 100, rate: 2, count: 0 },
-  { name: "C", cost: 1000, rate: 50, count: 0 },
+  { name: "Person", cost: 10, rate: 0.1, count: 0 },
+  { name: "Worker", cost: 100, rate: 2, count: 0 },
+  { name: "Grinder", cost: 1000, rate: 50, count: 0 },
 ];
 
 function increaseCount(n: number) {
