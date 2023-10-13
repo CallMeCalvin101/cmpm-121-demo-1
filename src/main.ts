@@ -66,7 +66,7 @@ function increaseCount(n: number) {
 
   if (counter >= goldenNumber) {
     countText!.style.color = "#ffd700";
-    console.log("TREU")
+    console.log("TREU");
   } else {
     countText!.style.color = "#1a1a1a";
   }
