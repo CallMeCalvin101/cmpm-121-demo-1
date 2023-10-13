@@ -4,7 +4,7 @@ const app: HTMLDivElement = document.querySelector("#app")!;
 
 const gameName: string = "😎 Game";
 const clickerText: string = "😎";
-const clickAmount: number = 100;
+const clickAmount: number = 1000;
 const second: number = 1000;
 
 let isAutoStarted: boolean = false;
@@ -57,10 +57,19 @@ const availableItems: Item[] = [
   },
 ];
 
+const goldenNumber = availableItems[availableItems.length - 1].cost;
+
 function increaseCount(n: number) {
   counter += n;
   countText!.innerHTML = `😎 ${counter.toFixed(2)} 😎`;
   rateText!.innerHTML = `${calculateGrowthRate().toFixed(2)} 😎/sec`;
+
+  if (counter >= goldenNumber) {
+    countText!.style.color = "#ffd700";
+    console.log("TREU")
+  } else {
+    countText!.style.color = "#1a1a1a";
+  }
 }
 
 function automaticIncrease() {
@@ -192,6 +201,7 @@ app.append(rateText!);
 
 const descriptionText: HTMLElement | null =
   document.getElementById("description");
+descriptionText!.innerHTML = "Hover over an upgrade to give me meaning 😐";
 app.append(descriptionText!);
 
 clicker?.addEventListener("click", () => {
